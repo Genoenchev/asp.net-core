@@ -35,6 +35,11 @@ namespace GenoSolution.Controllers
         {
             return View(await _context.Product.ToListAsync());
         }
+        // GET: ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
+        {
+            return View("Index", await _context.Product.Where(j => j.ProductName.Contains(SearchPhrase)).ToListAsync());
+        }
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
