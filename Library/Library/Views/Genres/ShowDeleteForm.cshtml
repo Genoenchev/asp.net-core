@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Library.Models.Genre>
+
+@{
+    ViewData["Title"] = "ShowDeleteForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ShowDeleteForm</h1>
+
+<h4>Genre</h4>
+<hr />
+<div style="margin-left: 5%; margin-top:1%;">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/images/card2.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Name: @Html.DisplayFor(modelItem => item.GenreName)</h5>
+                        <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.GenreId">Премахни</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

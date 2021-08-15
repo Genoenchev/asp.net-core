@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Library.Models.Author>
+
+@{
+    ViewData["Title"] = "ShowEditForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Промени Автор</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthPlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isDead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeathDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.About)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthPlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isDead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeathDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.About)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AuthorId">Промени</a> |
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

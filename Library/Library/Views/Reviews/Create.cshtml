@@ -1,0 +1,62 @@
+﻿@model Library.Models.Review
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+
+<h4>Review</h4>
+<hr />
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script src="https://use.fontawesome.com/a6f0361695.js"></script>
+
+<h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
+<h6 id="fh6">Your review will help us to improve our web hosting quality products, and customer services.</h6>
+
+<form id="feedback" action="">
+    <div class="pinfo">Your personal info</div>
+
+    <div class="form-group">
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                 <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                <input name="URL" placeholder="https://google.com" class="form-control" type="url">
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="pinfo">Въведете вашето ревю.</div>
+
+    <div class="form-group">
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                <textarea class="form-control" id="review" rows="3" asp-for="Text"></textarea>
+              
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

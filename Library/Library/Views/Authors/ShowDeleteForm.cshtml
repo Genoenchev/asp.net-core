@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Library.Models.Author>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Премахни Автор</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="alabala">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="~/images/card2.png" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Name: @Html.DisplayFor(modelItem => item.FirstName)</h5>
+                <p class="card-text">Last Name: @Html.DisplayFor(modelItem => item.LastName)</p>
+                <a  class="btn btn-primary" asp-action="Delete" asp-route-id="@item.AuthorId">Премахни</a>
+            </div>
+        </div>
+        <br />
+        <br />
+    }
+</div>

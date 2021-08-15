@@ -1,0 +1,64 @@
+﻿@model Library.Models.Genre
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Genre</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GenreName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GenreName)
+        </dd>
+    </dl>
+</div>
+<div style="margin-left: 5%; margin-top: 1%;">
+    <div class="row">
+        @foreach (var item in ViewBag.AllGenreBooks)
+        {
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/images/book1.jpg" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Title: @item.Title</h5>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Добави в любими
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Любими</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Успешно добави избраната книга в любими</p>
+                                    </div>
+                                    <img src="~/images/happy.jpg" height="100" width="100" />
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+                                        <button type="button" class="btn btn-primary">Премахни от любими</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.GenreId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

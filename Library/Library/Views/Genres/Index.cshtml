@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Library.Models.Genre>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Списък с жанрове</h1>
+
+
+<div style="margin-left: 5%; margin-top:1%;">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/images/card2.png" alt="">
+                    <div class="card-body">
+                        <h5 color:black class="card-title">Name: @Html.DisplayFor(modelItem => item.GenreName)</h5>
+                        <a asp-action="Details" asp-route-id="@item.GenreId" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

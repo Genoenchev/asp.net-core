@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Library.Models.Favourites>
+
+@{
+    ViewData["Title"] = "ShowEditForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Промени книги</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.BookId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+ 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

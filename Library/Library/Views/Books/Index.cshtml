@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Library.Models.Book>
+
+
+<h1>Списък с Книги</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ShowSearchResults">
+
+            <div class="form-group">
+                <label for="SearchPhrase" class="control-label"></label>
+                <input name="SearchPhrase" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div style="margin-left: 5%; margin-top:1%;">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/images/book1.jpg" alt="">
+                    <div class="card-body">
+                        <h5 color:black class="card-title">Title: @Html.DisplayFor(modelItem => item.Title)</h5>
+                        <p color:black class="card-text">Genre: @Html.DisplayFor(modelItem => item.Genre.GenreName)</p>
+                        <p color:black class="card-text">Author: @Html.DisplayFor(modelItem => item.Author.AuthorFullName)</p>
+                        <a class="btn btn-primary" asp-area="" asp-controller="Favourites" asp-action="Create">Добави в Любими</a>
+                        
+
+                        <!-- Modal -->
+                        @*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Любими</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Успешно добави избраната книга в любими</p>
+                                    </div>
+                                    <img src="~/images/happy.jpg" height="100" width="100" />
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+                                        <button type="button" class="btn btn-primary">Премахни от любими</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
