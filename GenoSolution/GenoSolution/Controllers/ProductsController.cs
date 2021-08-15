@@ -25,6 +25,17 @@ namespace GenoSolution.Controllers
             return View(await _context.Product.ToListAsync());
         }
 
+         // GET: ShowDeleteForm
+        public async Task<IActionResult> ShowDeleteForm()
+        {
+            return View(await _context.Product.ToListAsync());
+        }
+         // GET: ShowEditForm
+        public async Task<IActionResult> ShowEditForm()
+        {
+            return View(await _context.Product.ToListAsync());
+        }
+
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -56,8 +67,10 @@ namespace GenoSolution.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,ProductName,UnitPrice,UnitInStock,DeliveryOn")] Product product)
         {
+            
             if (ModelState.IsValid)
             {
+                
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

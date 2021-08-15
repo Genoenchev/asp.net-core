@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<GenoSolution.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ShowDeleteForm";
 }
 
-<h1>All Products</h1>
+<h1>Delete a product</h1>
 
 
 <table class="table">
@@ -35,24 +35,13 @@
                 @Html.DisplayFor(modelItem => item.UnitPrice)
             </td>
             <td>
-
-                @if (item.UnitInStock == 0)
-                {
-                    string stuff = "out of stock";
-                    @Html.DisplayFor(modelItem => stuff)
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.UnitInStock)
-                }
-
+                @Html.DisplayFor(modelItem => item.UnitInStock)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DeliveryOn)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+      
                 <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
             </td>
         </tr>
