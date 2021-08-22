@@ -1,6 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
+<div class="text-xl-center">
+    <h2>Controlls for the application can be found here</h2>
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="Index">People</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="Index">All Cars</a>
+</div>
+<br />
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="text-xl-center">
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="Create">Add a Person</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="Edit">Edit a Person</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="ShowDeleteForm">Remove a Person</a>
+</div>
+
+<br />
+
+<div class="text-xl-center">
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="Create">Add a Car</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="Edit">Edit a Car</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="ShowDeleteForm">Remove a Car</a>
+</div>

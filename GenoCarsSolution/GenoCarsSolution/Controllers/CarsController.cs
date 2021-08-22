@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GenoCarsSolution.Data;
 using GenoCarsSolution.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GenoCarsSolution.Controllers
 {
@@ -27,7 +28,7 @@ namespace GenoCarsSolution.Controllers
         }
 
         //GET: ShowDeleteForm
-
+        
         public async Task<IActionResult> ShowDeleteForm()
         {
             var appDbContext = _context.Cars.Include(c => c.People);
