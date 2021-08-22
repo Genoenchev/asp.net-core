@@ -2,7 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-xl-center">
+    <h2>Welcome to Geno's solution to the given task</h2>
+    <p>Here you can find the controls to the application</p>
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="Index">People</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="Index">All Cars</a>
 </div>
+<br />
+
+<div class="text-xl-center">
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="Create">Add a Person</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="Edit">Edit a Person</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="People" asp-action="ShowDeleteForm">Remove a Person</a>
+</div>
+
+<br />
+
+<div class="text-xl-center">
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="Create">Add a Car</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="Edit">Edit a Car</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Cars" asp-action="ShowDeleteForm">Remove a Car</a>
+</div>
+

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<GenoCarsSolution.Models.Cars>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List of all cars</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SizeOfEngine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HorsePowers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.People)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SizeOfEngine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorsePowers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.People.PersonName)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

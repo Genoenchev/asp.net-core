@@ -14,5 +14,6 @@ namespace GenoCarsSolution.Data
         {
         }
         public DbSet<GenoCarsSolution.Models.People> People { get; set; }
+        public DbSet<GenoCarsSolution.Models.Cars> Cars { get; set; }
     }
 }

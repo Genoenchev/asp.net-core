@@ -10,34 +10,37 @@ using GenoCarsSolution.Models;
 
 namespace GenoCarsSolution.Controllers
 {
-    public class PeopleController : Controller
+    public class CarsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PeopleController(ApplicationDbContext context)
+        public CarsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: People
+        // GET: Cars
         public async Task<IActionResult> Index()
         {
-            return View(await _context.People.ToListAsync());
+            var applicationDbContext = _context.Cars.Include(c => c.People);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         //GET: ShowDeleteForm
+
         public async Task<IActionResult> ShowDeleteForm()
         {
-            return View(await _context.People.ToListAsync());
+            var appDbContext = _context.Cars.Include(c => c.People);
+            return View(await appDbContext.ToListAsync());
         }
 
         //GET: ShowSearchResults
         public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
         {
-            return View("ShowResultForm", await _context.People.Where(b => b.PersonName.Contains(SearchPhrase)).ToListAsync());
+            return View("ShowResultForm", await _context.Cars.Where(b => b.Brand.Contains(SearchPhrase)).ToListAsync());
         }
 
-        // GET: People/Details/5
+        // GET: Cars/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,39 +48,42 @@ namespace GenoCarsSolution.Controllers
                 return NotFound();
             }
 
-            var people = await _context.People
+            var cars = await _context.Cars
+                .Include(c => c.People)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (people == null)
+            if (cars == null)
             {
                 return NotFound();
             }
 
-            return View(people);
+            return View(cars);
         }
 
-        // GET: People/Create
+        // GET: Cars/Create
         public IActionResult Create()
         {
+            ViewData["PeopleId"] = new SelectList(_context.People, "Id", "PersonName");
             return View();
         }
 
-        // POST: People/Create
+        // POST: Cars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PersonName,Age")] People people)
+        public async Task<IActionResult> Create([Bind("Id,Brand,Model,Color,SizeOfEngine,HorsePowers,PeopleId")] Cars cars)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(people);
+                _context.Add(cars);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(people);
+            ViewData["PeopleId"] = new SelectList(_context.People, "Id", "PersonName", cars.PeopleId);
+            return View(cars);
         }
 
-        // GET: People/Edit/5
+        // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,22 +91,23 @@ namespace GenoCarsSolution.Controllers
                 return NotFound();
             }
 
-            var people = await _context.People.FindAsync(id);
-            if (people == null)
+            var cars = await _context.Cars.FindAsync(id);
+            if (cars == null)
             {
                 return NotFound();
             }
-            return View(people);
+            ViewData["PeopleId"] = new SelectList(_context.People, "Id", "PersonName", cars.PeopleId);
+            return View(cars);
         }
 
-        // POST: People/Edit/5
+        // POST: Cars/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PersonName,Age")] People people)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,Color,SizeOfEngine,HorsePowers,PeopleId")] Cars cars)
         {
-            if (id != people.Id)
+            if (id != cars.Id)
             {
                 return NotFound();
             }
@@ -109,12 +116,12 @@ namespace GenoCarsSolution.Controllers
             {
                 try
                 {
-                    _context.Update(people);
+                    _context.Update(cars);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PeopleExists(people.Id))
+                    if (!CarsExists(cars.Id))
                     {
                         return NotFound();
                     }
@@ -125,10 +132,11 @@ namespace GenoCarsSolution.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(people);
+            ViewData["PeopleId"] = new SelectList(_context.People, "Id", "PersonName", cars.PeopleId);
+            return View(cars);
         }
 
-        // GET: People/Delete/5
+        // GET: Cars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,30 +144,31 @@ namespace GenoCarsSolution.Controllers
                 return NotFound();
             }
 
-            var people = await _context.People
+            var cars = await _context.Cars
+                .Include(c => c.People)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (people == null)
+            if (cars == null)
             {
                 return NotFound();
             }
 
-            return View(people);
+            return View(cars);
         }
 
-        // POST: People/Delete/5
+        // POST: Cars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var people = await _context.People.FindAsync(id);
-            _context.People.Remove(people);
+            var cars = await _context.Cars.FindAsync(id);
+            _context.Cars.Remove(cars);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PeopleExists(int id)
+        private bool CarsExists(int id)
         {
-            return _context.People.Any(e => e.Id == id);
+            return _context.Cars.Any(e => e.Id == id);
         }
     }
 }

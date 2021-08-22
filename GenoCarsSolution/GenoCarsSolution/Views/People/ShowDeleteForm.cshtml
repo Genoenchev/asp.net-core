@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<GenoCarsSolution.Models.People>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ShowDeleteForm";
 }
 
-<h1>Show all people</h1>
+<h1>Remove a Person</h1>
 
 
 <table class="table">
@@ -27,6 +27,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
